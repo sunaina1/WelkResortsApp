@@ -127,7 +127,6 @@ import TourPage from './src/pages/TourPage';
 import DemographicPage from './src/pages/DemographicPage';
 import PremiumsPage from './src/pages/PremiumsPage';
 import ConfirmationPage from './src/pages/ConfirmationPage';
-
 //import TabScreen from './pages/TabScreen';
 
 //Making TabNavigator which will bw called in App StackNavigator
