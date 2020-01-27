@@ -14,7 +14,9 @@ import {TextInput} from 'react-native-gesture-handler';
 //import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
-//const TourPage = () => {
+var day = null;
+var month = null;
+var year = null;
 class TourPage extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +28,26 @@ class TourPage extends Component {
     chargeTypeIndex: 0,
     monthIndex: 0,
     isDateTimePickerVisible: false,
+    isTimePickerVisible: false,
+    dateValue: '',
+    timeValue: '',
+  };
+
+  showTimePicker = () => {
+    this.setState({isTimePickerVisible: true});
+  };
+
+  hideTimePicker = () => {
+    this.setState({isTimePickerVisible: false});
+  };
+
+  handleTimePicked = date => {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    console.log(`${hours}:${minutes}:${seconds}`);
+    this.setState({timeValue: hours + ':' + minutes});
+    this.hideTimePicker();
   };
 
   showDateTimePicker = () => {
@@ -38,6 +60,11 @@ class TourPage extends Component {
 
   handleDatePicked = date => {
     console.warn('A date has been picked: ', date);
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    console.log('A date has been picked: ' + day + '-' + month + '-' + year);
+    this.setState({dateValue: day + '-' + month + '-' + year});
     this.hideDateTimePicker();
   };
 
@@ -113,12 +140,15 @@ class TourPage extends Component {
                   placeholderTextColor="gray"
                   pointerEvents="none"
                   editable={false}
+                  value={this.state.dateValue}
                 />
               </TouchableOpacity>
               <DateTimePicker
                 isVisible={this.state.isDateTimePickerVisible}
                 onConfirm={this.handleDatePicked}
                 onCancel={this.hideDateTimePicker}
+                mode="date"
+                format="DD-MM-YYYY"
               />
             </View>
 
@@ -153,11 +183,24 @@ class TourPage extends Component {
             </View>
             <View style={styles.subContainer}>
               <Text style={styles.label}>Tour Time</Text>
-              <TextInput
-                style={styles.inputBox}
-                underlineColorAndroid="rgba(0,0,0,0)"
-                placeholder="Select Tour Time"
-                placeholderTextColor="gray"
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => this.showTimePicker()}>
+                <TextInput
+                  style={styles.dateInputBox}
+                  underlineColorAndroid="rgba(0,0,0,0)"
+                  placeholder="Select Tour Time"
+                  placeholderTextColor="gray"
+                  pointerEvents="none"
+                  editable={false}
+                  value={this.state.timeValue}
+                />
+              </TouchableOpacity>
+              <DateTimePicker
+                isVisible={this.state.isTimePickerVisible}
+                onConfirm={this.handleTimePicked}
+                onCancel={this.hideTimePicker}
+                mode="time"
               />
             </View>
             <View style={styles.subContainer}>
