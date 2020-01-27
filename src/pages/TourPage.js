@@ -291,11 +291,7 @@ class TourPage extends Component {
                 <Button color="gray" title="Manual Entry" />
               </View>
               <View style={styles.button}>
-                <Button
-                  color="gray"
-                  title="Swipe CC"
-                  onPress={this.showDateTimePicker}
-                />
+                <Button color="gray" title="Swipe CC" />
                 <DateTimePicker
                   isVisible={this.state.isDateTimePickerVisible}
                   onConfirm={this.handleDatePicked}
