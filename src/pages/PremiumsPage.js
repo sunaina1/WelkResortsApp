@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -6,10 +7,14 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
-  Button,
   Picker,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
+//import RNPickerSelect from 'react-native-picker-select';
+// import ModalDropdown from 'react-native-modal-dropdown';
+// import DropdownMenu from 'react-native-dropdown-menu';
+import {Dropdown} from 'react-native-material-dropdown';
 
 export default class PremiumsPage extends Component {
   constructor(props) {
@@ -17,11 +22,35 @@ export default class PremiumsPage extends Component {
   }
   // Date time picker
   state = {
-    premiumOneIndex: 0,
-    premiumTwoIndex: 0,
-    premiumThreeIndex: 0,
-    premiumFourIndex: 0,
+    // premiumOneIndex: 0,
+    // premiumTwoIndex: 0,
+    // premiumThreeIndex: 0,
+    // premiumFourIndex: 0,
+    valueOne: 'Select Premium',
+    valueTwo: 'Select Premium',
+    valueThree: 'Select Premium',
+    valueFour: 'Select Premium',
+
+    data1: [
+      {
+        label: 'Select Premium',
+        value: 'Select Premium',
+      },
+      {
+        label: 'SD Cabana Rental PK',
+        value: 'SD Cabana Rental PK',
+      },
+      {
+        label: 'SD Fest VIP PKG',
+        value: 'SD Fest VIP PKG',
+      },
+      {
+        label: 'SD JC Golf Plat Card',
+        value: 'SD JC Golf Plat Card',
+      },
+    ],
   };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -31,6 +60,10 @@ export default class PremiumsPage extends Component {
             <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
 
             <Text style={styles.heading}>Premiums</Text>
+            {/* <ModalDropdown
+              style={styles.pickerStyle}
+              options={DEMO_OPTIONS_1}
+            /> */}
 
             <View style={styles.subContainer}>
               <Text style={styles.labelQty}>Qty</Text>
@@ -42,7 +75,7 @@ export default class PremiumsPage extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
               />
               <View style={styles.pickerBorder}>
-                <Picker
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.premiumOne}
                   onValueChange={(itemValue, itemPosition) =>
@@ -64,7 +97,30 @@ export default class PremiumsPage extends Component {
                     label="SD JC Golf Plat Card"
                     value="SD JC Golf Plat Card"
                   />
-                </Picker>
+                </Picker> */}
+                <Dropdown
+                  data={this.state.data1}
+                  value={this.state.valueOne}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  //   justifyContent: 'center',
+                  //   position: 'absolute',
+                  //   flex: 1,
+                  //   top: 0,
+                  //   left: 0,
+                  //   right: 0,
+                  //   bottom: 0,
+                  //   flexDirection: 'row',
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={valueOne => {
+                    this.setState({valueOne});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
               </View>
             </View>
 
@@ -78,7 +134,7 @@ export default class PremiumsPage extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
               />
               <View style={styles.pickerBorder}>
-                <Picker
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.premiumTwo}
                   onValueChange={(itemValue, itemPosition) =>
@@ -100,7 +156,23 @@ export default class PremiumsPage extends Component {
                     label="SD JC Golf Plat Card"
                     value="SD JC Golf Plat Card"
                   />
-                </Picker>
+                </Picker> */}
+                <Dropdown
+                  data={this.state.data1}
+                  value={this.state.valueTwo}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  //   marginTop: 50,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={valueTwo => {
+                    this.setState({valueTwo});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -113,7 +185,7 @@ export default class PremiumsPage extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
               />
               <View style={styles.pickerBorder}>
-                <Picker
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.premiumThree}
                   onValueChange={(itemValue, itemPosition) =>
@@ -135,7 +207,23 @@ export default class PremiumsPage extends Component {
                     label="SD JC Golf Plat Card"
                     value="SD JC Golf Plat Card"
                   />
-                </Picker>
+                </Picker> */}
+                <Dropdown
+                  data={this.state.data1}
+                  value={this.state.valueThree}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  //   marginTop: 50,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={valueThree => {
+                    this.setState({valueThree});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -148,7 +236,7 @@ export default class PremiumsPage extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
               />
               <View style={styles.pickerBorder}>
-                <Picker
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.premiumFour}
                   onValueChange={(itemValue, itemPosition) =>
@@ -170,16 +258,30 @@ export default class PremiumsPage extends Component {
                     label="SD JC Golf Plat Card"
                     value="SD JC Golf Plat Card"
                   />
-                </Picker>
+                </Picker> */}
+                <Dropdown
+                  data={this.state.data1}
+                  value={this.state.valueFour}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={valueFour => {
+                    this.setState({valueFour});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
               </View>
             </View>
             <View style={styles.fixToText}>
-              <View style={styles.button} />
-              <View style={styles.button} />
-              <View style={styles.button} />
               <View style={styles.button}>
                 <Button
-                  color="#1C313A"
+                  buttonStyle={{
+                    backgroundColor: '#1C313A',
+                  }}
                   title="Next"
                   onPress={() => navigate('Confirmation')}
                 />
@@ -247,7 +349,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   button: {
-    flex: 1,
+    width: 80,
     color: '#1C313A',
     borderRadius: 25,
     paddingVertical: 10,
@@ -271,5 +373,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 5,
     marginEnd: 25,
+    alignSelf: 'flex-end',
+  },
+  dropdown: {
+    width: '100%',
+    paddingLeft: 10,
+    paddingTop: 4,
+  },
+  pickerWindow: {
+    borderBottomColor: 'transparent',
+    borderWidth: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    flex: 1,
+    marginTop: 10,
   },
 });

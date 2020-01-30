@@ -1,0 +1,8 @@
+{
+  "urlRandomness": "ez-x83",
+  "hostType": "tunnel",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+  "https": false
+}

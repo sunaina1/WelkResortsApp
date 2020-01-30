@@ -1,4 +1,27 @@
 {
   "name": "WelkResortsApp",
-  "displayName": "WelkResortsApp"
+  "displayName": "WelkResortsApp",
+  "expo": {
+    "name": "WelkResortsApp",
+    "slug": "WelkResortsApp",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  }
 }

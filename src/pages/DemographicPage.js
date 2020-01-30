@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -6,10 +7,14 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
-  Button,
   Picker,
+  Dimensions,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
+import {Dropdown} from 'react-native-material-dropdown';
+
+var screenHeight = Math.round(Dimensions.get('window').height);
 
 export default class DemographicPage extends Component {
   constructor(props) {
@@ -18,6 +23,48 @@ export default class DemographicPage extends Component {
   state = {
     maritalIndex: 0,
     kidsIndex: 0,
+    maritalValue: 'Select Marital Status',
+    kidsValue: 'Select',
+    maritalData: [
+      {
+        label: 'Select Marital Status',
+        value: 'Select Marital Status',
+      },
+      {
+        label: 'Single',
+        value: 'Single',
+      },
+      {
+        label: 'Married',
+        value: 'Married',
+      },
+    ],
+    kidsData: [
+      {
+        label: 'Select Kids',
+        value: 'Select Kids',
+      },
+      {
+        label: '1',
+        value: '1',
+      },
+      {
+        label: '2',
+        value: '2',
+      },
+      {
+        label: '3',
+        value: '3',
+      },
+      {
+        label: '4',
+        value: '4',
+      },
+      {
+        label: '5',
+        value: '5',
+      },
+    ],
   };
   render() {
     const {navigate} = this.props.navigation;
@@ -137,7 +184,22 @@ export default class DemographicPage extends Component {
             <View style={styles.subContainer}>
               <Text style={styles.label}>Marital Status</Text>
               <View style={styles.pickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.maritalData}
+                  value={this.state.maritalValue}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={maritalValue => {
+                    this.setState({maritalValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.marital}
                   onValueChange={(itemValue, itemPosition) =>
@@ -149,13 +211,28 @@ export default class DemographicPage extends Component {
                   <Picker.Item label="Select Marital Status" value="" />
                   <Picker.Item label="Single" value="Single" />
                   <Picker.Item label="Married" value="Married" />
-                </Picker>
+                </Picker> */}
               </View>
             </View>
             <View style={styles.subContainer}>
               <Text style={styles.label}>No. of kids</Text>
               <View style={styles.pickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.kidsData}
+                  value={this.state.kidsValue}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={kidsValue => {
+                    this.setState({kidsValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.kids}
                   onValueChange={(itemValue, itemPosition) =>
@@ -168,16 +245,15 @@ export default class DemographicPage extends Component {
                   <Picker.Item label="1" value="1" />
                   <Picker.Item label="2" value="2" />
                   <Picker.Item label="3" value="3" />
-                </Picker>
+                </Picker> */}
               </View>
             </View>
             <View style={styles.fixToText}>
-              <View style={styles.button} />
-              <View style={styles.button} />
-              <View style={styles.button} />
               <View style={styles.button}>
                 <Button
-                  color="#1C313A"
+                  buttonStyle={{
+                    backgroundColor: '#1C313A',
+                  }}
                   title="Next"
                   onPress={() => navigate('Premium')}
                 />
@@ -259,13 +335,13 @@ const styles = StyleSheet.create({
   pickerBorder: {
     borderColor: '#1C313A',
     borderWidth: 1,
-    flex: 2.1,
+    flex: 2.06,
     height: 40,
     marginEnd: 25,
     backgroundColor: '#fff',
   },
   button: {
-    flex: 1,
+    width: 80,
     color: '#1C313A',
     borderRadius: 25,
     paddingVertical: 10,
@@ -289,5 +365,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 5,
     marginEnd: 25,
+    alignSelf: 'flex-end',
+  },
+  dropdown: {
+    width: '100%',
+    paddingLeft: 10,
+    paddingTop: 4,
+  },
+  pickerWindow: {
+    borderBottomColor: 'transparent',
+    borderWidth: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    flex: 1,
+    top: screenHeight / 2,
   },
 });

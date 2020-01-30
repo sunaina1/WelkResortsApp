@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -6,14 +7,18 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
-  Button,
+  Image,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+//import CheckBox from '@react-native-community/checkbox';
+import {CheckBox, Button} from 'react-native-elements';
+//import Checkbox from 'react-native-modest-checkbox';
+//import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ConfirmationPage extends Component {
   constructor(props) {
     super(props);
   }
+
   state = {
     checked1: false,
     checked2: false,
@@ -22,7 +27,12 @@ export default class ConfirmationPage extends Component {
     checked5: false,
     checked6: false,
     checked7: false,
+    checked8: false,
   };
+  checkedOne() {
+    console.warn('checked8 called');
+    this.state.checked8 = false;
+  }
   checkboxTest1() {
     this.setState({
       checked1: !this.state.checked1,
@@ -58,6 +68,7 @@ export default class ConfirmationPage extends Component {
       checked7: !this.state.checked7,
     });
   }
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -67,11 +78,21 @@ export default class ConfirmationPage extends Component {
             <StatusBar backgroundColor="#1c313a" barStyle="light-content" />
 
             <Text style={styles.heading}>Agree</Text>
+            {/* <CheckBox
+              checkedIcon={<Image source={require('../image/checked.png')} />}
+              uncheckedIcon={<Image source={require('../image/uncheck.png')} />}
+              checked={this.state.checked1}
+              onPress={() => this.setState({checked: !this.checkboxTest1()})}
+            /> */}
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked1}
-                onValueChange={() => this.checkboxTest1()}
+                checked={this.state.checked1}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest1()}
               />
               <Text style={styles.termsText}>
                 We/I share a combined annual income of $90,000 or more and are
@@ -81,8 +102,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked2}
-                onValueChange={() => this.checkboxTest2()}
+                checked={this.state.checked2}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest2()}
               />
               <Text style={styles.termsText}>
                 We/I own a valid major credit card(Visa/MasterCard, Amex,
@@ -92,8 +117,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked3}
-                onValueChange={() => this.checkboxTest3()}
+                checked={this.state.checked3}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest3()}
               />
               <Text style={styles.termsText}>
                 Couples who must have lived together for one year.
@@ -102,8 +131,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked4}
-                onValueChange={() => this.checkboxTest4()}
+                checked={this.state.checked4}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest4()}
               />
               <Text style={styles.termsText}>
                 We/I consent to being contacted by Welk Resort Group, Inc.
@@ -112,8 +145,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked5}
-                onValueChange={() => this.checkboxTest5()}
+                checked={this.state.checked5}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest5()}
               />
               <Text style={styles.termsText}>
                 ("Welk"), it's affiliates, representatives, or agents, for
@@ -125,8 +162,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked6}
-                onValueChange={() => this.checkboxTest6()}
+                checked={this.state.checked6}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest6()}
               />
               <Text style={styles.termsText}>
                 We/I authorize Welk and its affiliates, representatives, or
@@ -139,8 +180,12 @@ export default class ConfirmationPage extends Component {
             <View style={styles.subContainer}>
               <CheckBox
                 style={styles.checkbox}
-                value={this.state.checked7}
-                onValueChange={() => this.checkboxTest7()}
+                checked={this.state.checked7}
+                checkedIcon={<Image source={require('../image/checked.png')} />}
+                uncheckedIcon={
+                  <Image source={require('../image/uncheck.png')} />
+                }
+                onPress={() => this.checkboxTest7()}
               />
               <Text style={styles.termsText}>
                 We/I understand all of the terms and conditions of this offer
@@ -149,11 +194,11 @@ export default class ConfirmationPage extends Component {
               </Text>
             </View>
             <View style={styles.fixToText}>
-              <View style={styles.button} />
-              <View style={styles.button} />
               <View style={styles.button}>
                 <Button
-                  color="gray"
+                  buttonStyle={{
+                    backgroundColor: 'gray',
+                  }}
                   title="Cancel"
                   onPress={() => navigate('Tour')}
                 />
@@ -161,7 +206,9 @@ export default class ConfirmationPage extends Component {
 
               <View style={styles.button}>
                 <Button
-                  color="#1C313A"
+                  buttonStyle={{
+                    backgroundColor: '#1C313A',
+                  }}
                   title="Confirm"
                   onPress={() => navigate('Confirmation')}
                 />
@@ -205,7 +252,7 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
   },
   button: {
-    flex: 1,
+    width: 100,
     color: '#1C313A',
     borderRadius: 25,
     paddingVertical: 10,
@@ -217,5 +264,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 5,
     marginEnd: 25,
+    alignSelf: 'flex-end',
   },
 });

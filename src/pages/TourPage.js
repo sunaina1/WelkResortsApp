@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -6,17 +7,22 @@ import {
   StatusBar,
   SafeAreaView,
   Picker,
+  Dimensions,
   ScrollView,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 //import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {Button} from 'react-native-elements';
+import {Dropdown} from 'react-native-material-dropdown';
+
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 var day = null;
 var month = null;
 var year = null;
+var screenHeight = Math.round(Dimensions.get('window').height);
+
 class TourPage extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +37,106 @@ class TourPage extends Component {
     isTimePickerVisible: false,
     dateValue: '',
     timeValue: '',
+    tourSiteValue: 'Select Tour Site',
+    tourTypeValue: 'Select Tour Type',
+    chargeTypeValue: 'Select Charge Type',
+    monthValue: 'Select Month',
+    tourSiteData: [
+      {
+        label: 'Select Tour Site',
+        value: 'Select Tour Site',
+      },
+      {
+        label: 'Escondido - Stoneridge',
+        value: 'Escondido - Stoneridge',
+      },
+      {
+        label: 'Escondido',
+        value: 'Escondido',
+      },
+    ],
+    tourTypeData: [
+      {
+        label: 'Select Tour Type',
+        value: 'Select Tour Type',
+      },
+      {
+        label: 'Day Drive',
+        value: 'Day Drive',
+      },
+      {
+        label: 'Night Drive',
+        value: 'Night Drive',
+      },
+    ],
+    chargeTypeData: [
+      {
+        label: 'Select Charge Type',
+        value: 'Select Charge Type',
+      },
+      {
+        label: 'Credit Card',
+        value: 'Credit Card',
+      },
+      {
+        label: 'Debit Card',
+        value: 'Debit Card',
+      },
+    ],
+    monthData: [
+      {
+        label: 'Select Month',
+        value: 'Select Month',
+      },
+      {
+        label: 'Jan',
+        value: 'Jan',
+      },
+      {
+        label: 'Feb',
+        value: 'Feb',
+      },
+      {
+        label: 'March',
+        value: 'March',
+      },
+      {
+        label: 'April',
+        value: 'April',
+      },
+      {
+        label: 'May',
+        value: 'May',
+      },
+      {
+        label: 'June',
+        value: 'June',
+      },
+      {
+        label: 'July',
+        value: 'July',
+      },
+      {
+        label: 'Aug',
+        value: 'Aug',
+      },
+      {
+        label: 'Sep',
+        value: 'Sep',
+      },
+      {
+        label: 'Oct',
+        value: 'Oct',
+      },
+      {
+        label: 'Nov',
+        value: 'Nov',
+      },
+      {
+        label: 'Dec',
+        value: 'Dec',
+      },
+    ],
   };
 
   showTimePicker = () => {
@@ -93,7 +199,22 @@ class TourPage extends Component {
             <View style={styles.subContainer}>
               <Text style={styles.label}>Tour Site</Text>
               <View style={styles.pickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.tourSiteData}
+                  value={this.state.tourSiteValue}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={tourSiteValue => {
+                    this.setState({tourSiteValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.language}
                   onValueChange={(itemValue, itemPosition) =>
@@ -106,13 +227,28 @@ class TourPage extends Component {
                   <Picker.Item label="Java" value="java" />
                   <Picker.Item label="JavaScript" value="js" />
                   <Picker.Item label="React Native" value="rn" />
-                </Picker>
+                </Picker> */}
               </View>
             </View>
             <View style={styles.subContainer}>
               <Text style={styles.label}>Tour Type</Text>
               <View style={styles.pickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.tourTypeData}
+                  value={this.state.tourTypeValue}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={tourTypeValue => {
+                    this.setState({tourTypeValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.tourType}
                   onValueChange={(itemValue, itemPosition) =>
@@ -125,7 +261,7 @@ class TourPage extends Component {
                   <Picker.Item label="Java" value="java" />
                   <Picker.Item label="JavaScript" value="js" />
                   <Picker.Item label="React Native" value="rn" />
-                </Picker>
+                </Picker> */}
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -165,7 +301,22 @@ class TourPage extends Component {
             <View style={styles.subContainer}>
               <Text style={styles.label}>Charge Type</Text>
               <View style={styles.pickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.chargeTypeData}
+                  value={this.state.chargeTypeValue}
+                  pickerStyle={styles.pickerWindow}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={chargeTypeValue => {
+                    this.setState({chargeTypeValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.chargeType}
                   onValueChange={(itemValue, itemPosition) =>
@@ -178,7 +329,7 @@ class TourPage extends Component {
                   <Picker.Item label="Java" value="java" />
                   <Picker.Item label="JavaScript" value="js" />
                   <Picker.Item label="React Native" value="rn" />
-                </Picker>
+                </Picker> */}
               </View>
             </View>
             <View style={styles.subContainer}>
@@ -244,7 +395,22 @@ class TourPage extends Component {
             <View style={styles.subContainer}>
               <Text style={styles.label}>Date of Expiry</Text>
               <View style={styles.monthPickerBorder}>
-                <Picker
+                <Dropdown
+                  data={this.state.monthData}
+                  value={this.state.monthValue}
+                  pickerStyle={styles.pickerWindowMonth}
+                  // pickerStyle={{
+                  //   borderBottomColor: 'transparent',
+                  //   borderWidth: 0,
+                  // }}
+                  dropdownOffset={{top: 0}}
+                  containerStyle={styles.dropdown}
+                  onChangeText={monthValue => {
+                    this.setState({monthValue});
+                  }}
+                  inputContainerStyle={{borderBottomColor: 'transparent'}}
+                />
+                {/* <Picker
                   style={styles.pickerStyle}
                   selectedValue={this.state.monthType}
                   onValueChange={(itemValue, itemPosition) =>
@@ -266,7 +432,7 @@ class TourPage extends Component {
                   <Picker.Item label="Oct" value="Oct" />
                   <Picker.Item label="Nov" value="Nov" />
                   <Picker.Item label="Dec" value="Dec" />
-                </Picker>
+                </Picker> */}
               </View>
               {/* <TextInput
                 style={styles.cardInputBox}
@@ -284,23 +450,31 @@ class TourPage extends Component {
               />
             </View>
             <View style={styles.fixToText}>
+              {/* <View style={styles.button}> */}
+              {/* <Button color="#1C313A" title="Manual Entry" /> */}
+              {/* </View> */}
               <View style={styles.button}>
-                {/* <Button color="#1C313A" title="Manual Entry" /> */}
-              </View>
-              <View style={styles.button}>
-                <Button color="gray" title="Manual Entry" />
-              </View>
-              <View style={styles.button}>
-                <Button color="gray" title="Swipe CC" />
-                <DateTimePicker
-                  isVisible={this.state.isDateTimePickerVisible}
-                  onConfirm={this.handleDatePicked}
-                  onCancel={this.hideDateTimePicker}
+                <Button
+                  buttonStyle={{
+                    backgroundColor: 'gray',
+                  }}
+                  title="Manual Entry"
                 />
               </View>
               <View style={styles.button}>
                 <Button
-                  color="#1C313A"
+                  buttonStyle={{
+                    backgroundColor: 'gray',
+                  }}
+                  title="Swipe CC"
+                />
+              </View>
+              <View style={styles.button}>
+                <Button
+                  buttonStyle={{
+                    backgroundColor: '#1C313A',
+                    width: 80,
+                  }}
                   title="Next"
                   onPress={() => navigate('Demographic')}
                 />
@@ -347,7 +521,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   cardInputBox: {
-    flex: 1.45,
+    flex: 1.40,
     height: 40,
     backgroundColor: '#fff',
     fontSize: 14,
@@ -389,7 +563,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   touchable: {
-    flex: 2.1,
+    flex: 2.06,
     height: 40,
     // backgroundColor: '#fff',
     // paddingLeft: 10,
@@ -402,7 +576,7 @@ const styles = StyleSheet.create({
   pickerBorder: {
     borderColor: '#1C313A',
     borderWidth: 1,
-    flex: 2.1,
+    flex: 2.06,
     height: 40,
     marginEnd: 25,
     backgroundColor: '#fff',
@@ -410,13 +584,12 @@ const styles = StyleSheet.create({
   monthPickerBorder: {
     borderColor: '#1C313A',
     borderWidth: 1,
-    flex: 1.5,
+    flex: 1.45,
     height: 40,
     marginEnd: 5,
     backgroundColor: '#fff',
   },
   button: {
-    flex: 1,
     color: '#1C313A',
     borderRadius: 25,
     paddingVertical: 10,
@@ -440,6 +613,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 5,
     marginEnd: 25,
+    alignSelf: 'flex-end',
+  },
+  dropdown: {
+    width: '100%',
+    paddingLeft: 10,
+    paddingTop: 4,
+  },
+  pickerWindow: {
+    borderBottomColor: 'transparent',
+    borderWidth: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    flex: 1,
+    marginTop: 10,
+  },
+  pickerWindowMonth: {
+    borderBottomColor: 'transparent',
+    borderWidth: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    flex: 1,
+    marginTop: 10,
+    top: screenHeight / 2,
   },
 });
 
